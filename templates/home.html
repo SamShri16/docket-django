@@ -15,12 +15,32 @@
         <a href="/accounts/logout/" class="btn btn-danger">Logout</a>
     </div>
 
+    <!-- ADD TASK FORM -->
+    <div class="card bg-secondary text-white mt-4 p-3">
+        <h4>Add New Task</h4>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <input type="text" name="title" placeholder="Task Title" class="form-control mb-2" required>
+
+            <textarea name="description" placeholder="Description (optional)" class="form-control mb-2"></textarea>
+
+            <button type="submit" class="btn btn-success">Add Task</button>
+        </form>
+    </div>
+
+    <!-- TASK LIST -->
     <h3 class="mt-4">Your Tasks</h3>
 
     <ul class="list-group mt-3">
         {% for task in tasks %}
-            <li class="list-group-item d-flex justify-content-between">
-                {{ task.title }}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>{{ task.title }}</strong><br>
+                    <small>{{ task.description }}</small>
+                </div>
+
                 {% if task.completed %}
                     <span class="badge bg-success">Done</span>
                 {% else %}
