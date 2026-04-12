@@ -7,6 +7,9 @@ def register(request):
         username = request.POST['username']
         password = request.POST['password']
 
+        if User.objects.filter(username=username).exists():
+            return render(request, 'register.html', {'error': 'User already exists'})
+
         user = User.objects.create_user(username=username, password=password)
         user.save()
         return redirect('login')
@@ -24,6 +27,8 @@ def user_login(request):
         if user is not None:
             login(request, user)
             return redirect('home')
+        else:
+            return render(request, 'login.html', {'error': 'Invalid credentials'})
 
     return render(request, 'login.html')
 
