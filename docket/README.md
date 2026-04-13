@@ -1,16 +1,16 @@
 # 🚀 Docket-Django
 
-A smart task management web application built using Django, designed to help users manage tasks efficiently with authentication and productivity-focused features.
+A smart task management web application built using Django that helps users manage tasks efficiently with authentication and productivity-focused features.
 
 ---
 
 ## 📌 Features
 
 * 🔐 User Authentication (Register / Login / Logout)
-* 📋 Task Management System (Backend model created)
+* 📋 Task Management (Add, View, Complete, Delete)
 * 👤 User-specific tasks (each user has separate data)
-* 🗄️ Admin Panel for managing tasks
-* 🎨 Bootstrap-based UI (basic setup)
+* 📊 Basic Dashboard (task stats)
+* 🎨 Responsive UI using Bootstrap
 
 ---
 
@@ -29,7 +29,7 @@ A smart task management web application built using Django, designed to help use
 git clone https://github.com/YOUR_USERNAME/docket-django.git
 cd docket-django
 python -m venv venv
-venv\Scripts\activate
+.\venv\Scripts\Activate
 pip install django
 cd docket
 python manage.py migrate
@@ -40,17 +40,26 @@ python manage.py runserver
 
 ## 📅 Project Status
 
-🚧 In Development (Core backend completed)
+🚧 In Development (Core features completed)
 
 ---
 
-## 🔥 Upcoming Features
+## 🔥 Completed Features
 
-* Display tasks on dashboard
-* Add/Edit/Delete tasks (CRUD)
-* Task filtering (priority, status)
-* Productivity dashboard (insights)
-* Deadline tracking
+* User authentication system
+* Full CRUD operations for tasks
+* Task completion & deletion
+* Dashboard statistics (total, completed, pending)
+
+---
+
+## 🚀 Upcoming Features
+
+* Task categories (Daily vs Normal tasks)
+* Reminder system
+* Productivity insights dashboard
+* Clock & time utilities (world clock, stopwatch)
+* UI/UX enhancements
 
 ---
 
