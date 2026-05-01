@@ -13,9 +13,11 @@ class Task(models.Model):
     completed = models.BooleanField(default=False)
     task_type = models.CharField(max_length=10, choices=TASK_TYPE_CHOICES, default='normal')
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    reminder_time = models.TimeField(null=True, blank=True)
+
 
     def __str__(self):
         return self.title
 
 
-        
