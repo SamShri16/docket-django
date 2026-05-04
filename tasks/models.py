@@ -1,23 +1,25 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Task(models.Model):
-    TASK_TYPE_CHOICES = [
-        ('daily', 'Daily'),
-        ('normal', 'Normal'),
-    ]
+CATEGORY_CHOICES = [
+    ('Work', 'Work'),
+    ('Home', 'Home'),
+    ('Daily', 'Daily'),
+    ('Study', 'Study'),
+]
 
+class Task(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
-    completed = models.BooleanField(default=False)
-    task_type = models.CharField(max_length=10, choices=TASK_TYPE_CHOICES, default='normal')
-    reminder_time = models.TimeField(null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    
-    category = models.CharField(max_length=50, default="General")
-    due_date = models.DateTimeField(null=True, blank=True) 
 
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='Work')
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    due_date = models.DateTimeField(null=True, blank=True)
+
+    completed = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
