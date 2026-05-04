@@ -2,6 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Task
 
+# ✅ LANDING PAGE VIEW (THIS WAS MISSING)
+def home(request):
+    return render(request, 'index.html')
+
+
+# ✅ DASHBOARD
 @login_required
 def dashboard(request):
     query = request.GET.get('search')
@@ -28,12 +34,22 @@ def dashboard(request):
             category=category,
             due_date=due_date if due_date else None
         )
+
         return redirect('/dashboard/')
 
-    context = {
-        'tasks': tasks
-    }
-
-    return render(request, 'tasks/dashboard.html', context)
+    return render(request, 'tasks/dashboard.html', {'tasks': tasks})
 
 
+# ✅ COMPLETE TASK
+def complete_task(request, task_id):
+    task = Task.objects.get(id=task_id)
+    task.completed = True
+    task.save()
+    return redirect('/dashboard/')
+
+
+# ✅ DELETE TASK
+def delete_task(request, task_id):
+    task = Task.objects.get(id=task_id)
+    task.delete()
+    return redirect('/dashboard/')
