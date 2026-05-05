@@ -35,7 +35,7 @@ def dashboard(request):
             due_date=due_date if due_date else None
         )
 
-        return redirect('/dashboard/')
+        return redirect('/dashboard/?added=true')
 
     return render(request, 'tasks/dashboard.html', {'tasks': tasks})
 
@@ -45,11 +45,11 @@ def complete_task(request, task_id):
     task = Task.objects.get(id=task_id)
     task.completed = True
     task.save()
-    return redirect('/dashboard/')
+    return redirect('/dashboard/?added=true')
 
 
 # ✅ DELETE TASK
 def delete_task(request, task_id):
     task = Task.objects.get(id=task_id)
     task.delete()
-    return redirect('/dashboard/')
+    return redirect('/dashboard/?added=true')
