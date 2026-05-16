@@ -1,0 +1,27 @@
+<h1>My Tasks</h1>
+
+<a href="{% url 'dashboard' %}">
+    Dashboard
+</a>
+
+<hr>
+
+{% for task in tasks %}
+
+<p>
+    {{ task.title }}
+
+    {% if task.completed %}
+        ✅
+    {% else %}
+        <a href="{% url 'complete_task' task.id %}">
+            Complete
+        </a>
+    {% endif %}
+
+    <a href="{% url 'delete_task' task.id %}">
+        Delete
+    </a>
+</p>
+
+{% endfor %}
