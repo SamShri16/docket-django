@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Tasks</title>
+</head>
+
+<body class="bg-dark text-white container mt-5">
+
+<h2>All Tasks</h2>
+
+{% for task in tasks %}
+    <div class="card bg-secondary p-2 mb-2">
+        {{ task.title }}
+
+        <a href="/dashboard/complete/{{ task.id }}/" class="btn btn-success btn-sm">✔</a>
+        <a href="/dashboard/delete/{{ task.id }}/" class="btn btn-danger btn-sm">✖</a>
+    </div>
+{% endfor %}
+
+</body>
+</html>
