@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register - Docket</title>
+
+    <style>
+
+        body{
+            background:#0f172a;
+            font-family:Arial;
+            color:white;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            height:100vh;
+            margin:0;
+        }
+
+        .box{
+            background:#1e293b;
+            padding:40px;
+            border-radius:15px;
+            width:350px;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            margin-top:10px;
+            margin-bottom:20px;
+
+            border:none;
+            border-radius:8px;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+
+            background:#38bdf8;
+            border:none;
+            border-radius:8px;
+
+            font-size:16px;
+            cursor:pointer;
+        }
+
+        a{
+            color:#38bdf8;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="box">
+
+        <h1>Create Account</h1>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit">
+                Register
+            </button>
+
+        </form>
+
+        <p>
+            Already have an account?
+
+            <a href="/accounts/login/">
+                Login
+            </a>
+        </p>
+
+    </div>
+
+</body>
+</html>

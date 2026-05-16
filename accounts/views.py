@@ -1,44 +1,29 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
-
-from django.contrib.auth.decorators import login_required
-
-@login_required
-def profile(request):
-    return render(request, 'profile.html')
-
-def register(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-
-        if User.objects.filter(username=username).exists():
-            return render(request, 'register.html', {'error': 'User already exists'})
-
-        user = User.objects.create_user(username=username, password=password)
-        user.save()
-        return redirect('login')
-
-    return render(request, 'register.html')
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
 
-def user_login(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+def register_view(request):
 
-        user = authenticate(request, username=username, password=password)
+    if request.method == "POST":
 
-        if user is not None:
-            login(request, user)
-            return redirect('home')
-        else:
-            return render(request, 'login.html', {'error': 'Invalid credentials'})
+        form = UserCreationForm(request.POST)
 
-    return render(request, 'login.html')
+        if form.is_valid():
+            form.save()
 
+            messages.success(
+                request,
+                "Account created successfully! Please login."
+            )
 
-def user_logout(request):
-    logout(request)
-    return redirect('login')
+            return redirect("login")
+
+    else:
+        form = UserCreationForm()
+
+    return render(
+        request,
+        "registration/register.html",
+        {"form": form}
+    )
