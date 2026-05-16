@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="sidebar">
+
+    <h2>🚀 Docket</h2>
+
+    <a href="/dashboard/">
+        <i class="fa-solid fa-house"></i>
+        Dashboard
+    </a>
+
+    <a href="/dashboard/add/">
+        <i class="fa-solid fa-plus"></i>
+        Add Task
+    </a>
+
+    <a href="/dashboard/tasks/">
+        <i class="fa-solid fa-list"></i>
+        My Tasks
+    </a>
+
+    <a href="/accounts/logout/">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Logout
+    </a>
+
+</div>
+
+<div class="main-content">
+
+    <div class="topbar">
+
+        <div>
+            <h1>📋 My Tasks</h1>
+            <p>All your saved productivity tasks.</p>
+        </div>
+
+        <div class="profile-box">
+            👤 {{ request.user.username }}
+        </div>
+
+    </div>
+
+    {% if tasks %}
+
+        {% for task in tasks %}
+
+        <div class="task-card">
+
+            <h4>
+                {{ task.title }}
+            </h4>
+
+            <p class="mt-3">
+                {{ task.description }}
+            </p>
+
+            <div class="task-meta mb-3">
+
+                <div>
+                    📂 {{ task.category }}
+                </div>
+
+                {% if task.due_date %}
+                <div>
+                    ⏰ Due:
+                    {{ task.due_date }}
+                </div>
+                {% endif %}
+
+                <div>
+                    📅 Added:
+                    {{ task.created_at }}
+                </div>
+
+            </div>
+
+            <a
+                href="/complete/{{ task.id }}/"
+                class="btn btn-success"
+            >
+                Complete
+            </a>
+
+            <a
+                href="/delete/{{ task.id }}/"
+                class="btn btn-danger"
+            >
+                Delete
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="glass-card text-center">
+
+            <h3>No Tasks Yet</h3>
+
+            <p>
+                Start by creating your first task.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
