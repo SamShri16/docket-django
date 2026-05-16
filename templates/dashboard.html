@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+
+    <style>
+        body{
+            margin:0;
+            font-family:Arial;
+            background:#f1f5f9;
+        }
+
+        .navbar{
+            background:#0f172a;
+            color:white;
+            padding:20px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .container{
+            width:80%;
+            margin:auto;
+            margin-top:40px;
+        }
+
+        .stats{
+            display:flex;
+            gap:20px;
+            margin-bottom:30px;
+        }
+
+        .card{
+            flex:1;
+            background:white;
+            padding:20px;
+            border-radius:12px;
+            box-shadow:0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .task-form{
+            background:white;
+            padding:20px;
+            border-radius:12px;
+            margin-bottom:30px;
+        }
+
+        input{
+            width:70%;
+            padding:12px;
+        }
+
+        button{
+            padding:12px 20px;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+        }
+
+        .add-btn{
+            background:#2563eb;
+            color:white;
+        }
+
+        .task{
+            background:white;
+            padding:20px;
+            border-radius:12px;
+            margin-bottom:15px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .complete{
+            background:#16a34a;
+            color:white;
+        }
+
+        .delete{
+            background:#dc2626;
+            color:white;
+        }
+
+        .done{
+            text-decoration:line-through;
+            color:gray;
+        }
+
+        a{
+            text-decoration:none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <h2>Docket Dashboard</h2>
+
+    <div>
+        {{ request.user.username }}
+
+        |
+        
+        <a href="/accounts/logout/" style="color:white;">
+            Logout
+        </a>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="stats">
+
+        <div class="card">
+            <h3>Pending Tasks</h3>
+            <h1>{{ pending_count }}</h1>
+        </div>
+
+        <div class="card">
+            <h3>Completed Tasks</h3>
+            <h1>{{ completed_count }}</h1>
+        </div>
+
+    </div>
+
+    <div class="task-form">
+
+        <form method="POST" action="/add/">
+            {% csrf_token %}
+
+            <input
+                type="text"
+                name="title"
+                placeholder="Enter task..."
+                required
+            >
+
+            <button class="add-btn" type="submit">
+                Add Task
+            </button>
+        </form>
+
+    </div>
+
+    {% for task in tasks %}
+
+        <div class="task">
+
+            <div class="{% if task.completed %}done{% endif %}">
+                {{ task.title }}
+            </div>
+
+            <div>
+
+                {% if not task.completed %}
+
+                    <a href="/complete/{{ task.id }}/">
+                        <button class="complete">
+                            Complete
+                        </button>
+                    </a>
+
+                {% endif %}
+
+                <a href="/delete/{{ task.id }}/">
+                    <button class="delete">
+                        Delete
+                    </button>
+                </a>
+
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

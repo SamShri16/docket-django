@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Docket</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg,#020617,#0f172a,#1e293b);
+        }
+
+        .register-box{
+            width:450px;
+            background:white;
+            padding:40px;
+            border-radius:20px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:30px;
+            color:#0f172a;
+        }
+
+        .input-group{
+            margin-bottom:18px;
+        }
+
+        .input-group label{
+            display:block;
+            margin-bottom:8px;
+            font-weight:bold;
+            color:#334155;
+        }
+
+        .input-group input{
+            width:100%;
+            padding:12px;
+            border:1px solid #cbd5e1;
+            border-radius:10px;
+        }
+
+        .btn{
+            width:100%;
+            padding:12px;
+            border:none;
+            border-radius:10px;
+            background:#16a34a;
+            color:white;
+            font-size:16px;
+            cursor:pointer;
+        }
+
+        .btn:hover{
+            background:#15803d;
+        }
+
+        .login-link{
+            margin-top:20px;
+            text-align:center;
+        }
+
+        .login-link a{
+            text-decoration:none;
+            color:#2563eb;
+            font-weight:bold;
+        }
+
+        ul{
+            color:red;
+            margin-bottom:10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-box">
+
+        <h1>Create Account</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="btn">
+                Register
+            </button>
+        </form>
+
+        <div class="login-link">
+            Already have an account?
+            <a href="/accounts/login/">Login</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
