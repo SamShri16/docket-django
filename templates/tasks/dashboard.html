@@ -2,77 +2,36 @@
 
 {% block content %}
 
-<div class="page-header">
+<h1 class="mb-4">Dashboard</h1>
 
-    <h1>📊 Dashboard</h1>
+<div class="row">
 
-    <p>
-        Welcome back,
-        {{ request.user.username }}
-    </p>
-
-</div>
-
-<div class="stats-grid">
-
-    <div class="stat-card blue">
-
-        <h2>{{ pending_tasks }}</h2>
-
-        <p>Pending Tasks</p>
-
-    </div>
-
-    <div class="stat-card green">
-
-        <h2>{{ completed_tasks }}</h2>
-
-        <p>Completed Tasks</p>
-
-    </div>
-
-</div>
-
-<div class="section-card">
-
-    <div class="section-top">
-
-        <h2>🔥 Latest Tasks</h2>
-
-        <a href="{% url 'task_list' %}"
-           class="small-btn">
-            View All
-        </a>
-
-    </div>
-
-    {% for task in tasks %}
-
-    <div class="task-row">
-
-        <div>
-
-            <h3>{{ task.title }}</h3>
-
-            <small>
-                {{ task.category }}
-            </small>
-
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h3>12</h3>
+                <p>Total Tasks</p>
+            </div>
         </div>
-
-        {% if task.due_date %}
-        <div class="task-date">
-            ⏰ {{ task.due_date|date:"M d, Y h:i A" }}
-        </div>
-        {% endif %}
-
     </div>
 
-    {% empty %}
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h3>5</h3>
+                <p>Completed</p>
+            </div>
+        </div>
+    </div>
 
-    <p>No tasks yet.</p>
-
-    {% endfor %}
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h3>7</h3>
+                <p>Pending</p>
+            </div>
+        </div>
+    </div>
 
 </div>
 

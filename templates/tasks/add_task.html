@@ -2,45 +2,33 @@
 
 {% block content %}
 
-<div class="container mt-4">
+<div class="card shadow-sm">
 
-    <div class="card shadow-sm">
+    <div class="card-body">
 
-        <div class="card-body">
+        <h2 class="mb-4">Add Task</h2>
 
-            <h2 class="mb-4">➕ Add New Task</h2>
+        <form method="POST">
 
-            <form method="POST">
+            {% csrf_token %}
 
-                {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Task Title</label>
 
-                <div class="mb-3">
-                    <label class="form-label">Task Title</label>
+                <input type="text" class="form-control">
+            </div>
 
-                    <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Enter task title"
-                    >
-                </div>
+            <div class="mb-3">
+                <label class="form-label">Description</label>
 
-                <div class="mb-3">
-                    <label class="form-label">Description</label>
+                <textarea class="form-control"></textarea>
+            </div>
 
-                    <textarea
-                        class="form-control"
-                        rows="4"
-                        placeholder="Task description"
-                    ></textarea>
-                </div>
+            <button class="btn btn-success">
+                Save Task
+            </button>
 
-                <button type="submit" class="btn btn-success">
-                    Save Task
-                </button>
-
-            </form>
-
-        </div>
+        </form>
 
     </div>
 
