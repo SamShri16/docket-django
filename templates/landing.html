@@ -11,64 +11,63 @@
             color:white;
         }
 
+        .navbar{
+            display:flex;
+            justify-content:space-between;
+            padding:20px 60px;
+            background:#111827;
+        }
+
+        .buttons a{
+            text-decoration:none;
+            margin-left:15px;
+            padding:10px 20px;
+            border-radius:8px;
+            color:white;
+            background:#2563eb;
+        }
+
         .hero{
-            height:100vh;
+            height:80vh;
             display:flex;
             flex-direction:column;
             justify-content:center;
             align-items:center;
             text-align:center;
+            padding:20px;
         }
 
         h1{
             font-size:60px;
-            margin-bottom:20px;
+            margin-bottom:10px;
         }
 
         p{
+            max-width:700px;
             font-size:20px;
-            width:60%;
-        }
-
-        .buttons{
-            margin-top:30px;
-        }
-
-        a{
-            text-decoration:none;
-            padding:15px 30px;
-            border-radius:10px;
-            margin:10px;
-            color:white;
-            font-weight:bold;
-        }
-
-        .login{
-            background:#2563eb;
-        }
-
-        .register{
-            background:#16a34a;
+            color:#cbd5e1;
         }
     </style>
 </head>
 
 <body>
 
-<div class="hero">
-
-    <h1>Docket</h1>
-
-    <p>
-        Smart task management system for productivity,
-        reminders, and daily workflow organization.
-    </p>
+<div class="navbar">
+    <h2>Docket</h2>
 
     <div class="buttons">
-        <a class="login" href="/accounts/login/">Login</a>
-        <a class="register" href="/accounts/register/">Register</a>
+        <a href="/accounts/login/">Login</a>
+        <a href="/accounts/register/">Register</a>
     </div>
+</div>
 
+<div class="hero">
+    <h1>Smart Task Management System</h1>
+
+    <p>
+        Organize your work, track tasks, manage productivity,
+        and complete your goals efficiently with Docket.
+    </p>
 </div>
 
 </body>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Tasks</title>
+
+    <style>
+        body{
+            font-family:Arial;
+            background:#f1f5f9;
+            padding:40px;
+        }
+
+        .task{
+            background:white;
+            padding:20px;
+            border-radius:12px;
+            margin-bottom:20px;
+        }
+
+        a{
+            text-decoration:none;
+            margin-right:10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>My Tasks</h1>
+
+<a href="/dashboard/">Back to Dashboard</a>
+
+<br><br>
+
+{% for task in tasks %}
+
+<div class="task">
+
+    <h2>{{ task.title }}</h2>
+
+    <p>{{ task.description }}</p>
+
+    <p>
+        Status:
+        {% if task.completed %}
+            Completed
+        {% else %}
+            Pending
+        {% endif %}
+    </p>
+
+    {% if not task.completed %}
+        <a href="/complete/{{ task.id }}/">Complete</a>
+    {% endif %}
+
+    <a href="/delete/{{ task.id }}/">Delete</a>
+
+</div>
+
+{% endfor %}
+
+</body>
+</html>

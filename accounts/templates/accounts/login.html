@@ -1,125 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Docket</title>
+    <title>Login</title>
 
     <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial, Helvetica, sans-serif;
-        }
-
         body{
-            height:100vh;
+            font-family:Arial;
+            background:#0f172a;
             display:flex;
             justify-content:center;
             align-items:center;
-            background:linear-gradient(135deg,#0f172a,#1e293b,#334155);
+            height:100vh;
+            margin:0;
         }
 
-        .login-box{
-            width:400px;
+        .box{
             background:white;
             padding:40px;
-            border-radius:20px;
-            box-shadow:0 10px 30px rgba(0,0,0,0.3);
+            border-radius:12px;
+            width:350px;
         }
 
-        h1{
-            text-align:center;
-            margin-bottom:30px;
-            color:#0f172a;
-        }
-
-        .input-group{
+        input{
+            width:100%;
+            padding:12px;
+            margin-top:10px;
             margin-bottom:20px;
         }
 
-        .input-group label{
-            display:block;
-            margin-bottom:8px;
-            color:#334155;
-            font-weight:bold;
-        }
-
-        .input-group input{
+        button{
             width:100%;
             padding:12px;
-            border:1px solid #cbd5e1;
-            border-radius:10px;
-            font-size:16px;
-        }
-
-        .btn{
-            width:100%;
-            padding:12px;
-            border:none;
-            border-radius:10px;
             background:#2563eb;
             color:white;
-            font-size:16px;
-            cursor:pointer;
-            transition:0.3s;
+            border:none;
         }
 
-        .btn:hover{
-            background:#1d4ed8;
-        }
-
-        .register-link{
-            text-align:center;
-            margin-top:20px;
-        }
-
-        .register-link a{
-            color:#2563eb;
+        a{
             text-decoration:none;
-            font-weight:bold;
-        }
-
-        .errorlist{
-            color:red;
-            margin-bottom:10px;
-            list-style:none;
         }
     </style>
 </head>
+
 <body>
 
-    <div class="login-box">
+<div class="box">
+    <h2>Login</h2>
 
-        <h1>Docket Login</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
 
-        <form method="POST">
-            {% csrf_token %}
+        <button type="submit">Login</button>
+    </form>
 
-            {{ form.non_field_errors }}
-
-            <div class="input-group">
-                <label>Username</label>
-                {{ form.username }}
-            </div>
-
-            <div class="input-group">
-                <label>Password</label>
-                {{ form.password }}
-            </div>
-
-            <button type="submit" class="btn">
-                Login
-            </button>
-        </form>
-
-        <div class="register-link">
-            Don't have an account?
-            <a href="/accounts/register/">Register</a>
-        </div>
-
-    </div>
+    <p>
+        Don't have an account?
+        <a href="/accounts/register/">Register</a>
+    </p>
+</div>
 
 </body>
 </html>

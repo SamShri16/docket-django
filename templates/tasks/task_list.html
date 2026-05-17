@@ -2,89 +2,68 @@
 
 {% block content %}
 
-<div class="page-header">
+<div class="container mt-4">
 
-    <h1>📋 My Tasks</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>📋 My Tasks</h2>
 
-    <p>Manage all your tasks here.</p>
-
-</div>
-
-<div class="task-grid">
-
-    {% for task in tasks %}
-
-    <div class="task-card">
-
-        <div class="task-card-top">
-
-            <h3>{{ task.title }}</h3>
-
-            {% if task.completed %}
-                <span class="badge green-badge">
-                    Completed
-                </span>
-            {% else %}
-                <span class="badge yellow-badge">
-                    Pending
-                </span>
-            {% endif %}
-
-        </div>
-
-        <p>{{ task.description }}</p>
-
-        <div class="task-meta">
-
-            <div>📁 {{ task.category }}</div>
-
-            <div>
-                🕒
-                {{ task.created_at|date:"M d, Y h:i A" }}
-            </div>
-
-            {% if task.due_date %}
-            <div>
-                ⏰
-                {{ task.due_date|date:"M d, Y h:i A" }}
-            </div>
-            {% endif %}
-
-        </div>
-
-        <div class="task-actions">
-
-            {% if not task.completed %}
-
-            <a href="{% url 'complete_task' task.id %}"
-               class="complete-btn">
-
-                Complete
-
-            </a>
-
-            {% endif %}
-
-            <a href="{% url 'delete_task' task.id %}"
-               class="delete-btn">
-
-                Delete
-
-            </a>
-
-        </div>
-
+        <a href="{% url 'add_task' %}" class="btn btn-primary">
+            + Add Task
+        </a>
     </div>
 
-    {% empty %}
+    <div class="card shadow-sm">
+        <div class="card-body">
 
-    <div class="section-card">
+            <table class="table table-hover">
 
-        No tasks available.
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Priority</th>
+                    </tr>
+                </thead>
 
+                <tbody>
+
+                    <tr>
+                        <td>Complete Python Project</td>
+                        <td>
+                            <span class="badge bg-warning text-dark">
+                                Pending
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="badge bg-danger">
+                                High
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Push GitHub Repository</td>
+
+                        <td>
+                            <span class="badge bg-success">
+                                Done
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="badge bg-info">
+                                Medium
+                            </span>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
     </div>
-
-    {% endfor %}
 
 </div>
 
